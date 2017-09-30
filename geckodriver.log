@@ -1,0 +1,26 @@
+1506759430919	geckodriver	INFO	geckodriver 0.19.0
+1506759430927	geckodriver	INFO	Listening on 127.0.0.1:32859
+1506759431139	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.M3tJPyQhVZAQ"
+1506759432235	Marionette	INFO	Enabled via --marionette
+1506759434561	Marionette	INFO	Listening on port 33513
+JavaScript error: chrome://marionette/content/server.js, line 337: NS_ERROR_SOCKET_ADDRESS_IN_USE: Component returned failure code: 0x804b0036 (NS_ERROR_SOCKET_ADDRESS_IN_USE) [nsIServerSocket.initSpecialConnection]
+1506759434670	Marionette	WARN	TLS certificate errors will be ignored for this session
+1506759434745	Marionette	DEBUG	loaded listener.js
+1506759434801	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1506759434827	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1506759434832	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1506759434833	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+1506759434889	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "about:neterror?e=connectionFailure&u=http%3A//localhost%3A8000/&c=UTF-8&f=regular&d=Firefox%20can%E2%80%99t%20establish%20a%20connection%20to%20the%20server%20at%20localhost%3A8000."
+1506759513187	geckodriver	INFO	geckodriver 0.19.0
+1506759513193	geckodriver	INFO	Listening on 127.0.0.1:41459
+1506759513381	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.dMKD0FCQHitV"
+1506759514391	Marionette	INFO	Enabled via --marionette
+1506759516774	Marionette	INFO	Listening on port 36999
+1506759516811	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://marionette/content/server.js, line 337: NS_ERROR_SOCKET_ADDRESS_IN_USE: Component returned failure code: 0x804b0036 (NS_ERROR_SOCKET_ADDRESS_IN_USE) [nsIServerSocket.initSpecialConnection]
+1506759516882	Marionette	DEBUG	loaded listener.js
+1506759516933	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1506759516956	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1506759516961	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1506759516961	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+1506759517008	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "about:neterror?e=connectionFailure&u=http%3A//localhost%3A8000/&c=UTF-8&f=regular&d=Firefox%20can%E2%80%99t%20establish%20a%20connection%20to%20the%20server%20at%20localhost%3A8000."
