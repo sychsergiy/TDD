@@ -36,6 +36,8 @@ class NewVisitorTest(LiveServerTestCase):
 		inputbox = self.browser.find_element_by_id('id_new_item')
 		inputbox.send_keys('Buy peacock feathers')
 		inputbox.send_keys(Keys.ENTER)
+		edith_list_url = self.browser.current_url
+		self.assertRegex(edith_list_url, '/lists/.+')
 
 		time.sleep(1)
 
@@ -48,9 +50,21 @@ class NewVisitorTest(LiveServerTestCase):
 		self.check_for_row_in_list_table('1: Buy peacock feathers')
 		self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
 
-		# There is still a text box inviting her to add another item. She
-		# enters "Use peacock feathers to make a fly" (Edith is very
-		# methodical)
+		self.browser.quit()
+		self.browser = webdriver.Firefox()
+
+		self.browser.get(self.live_server_url)
+		page_text = self.browser.find_element_by_tag_name('body').text
+		self.assertNotIn('Buy peacock feathers', page_text)
+		self.assertNotIn('make a fly', page_text)
+
+		inputbox = self.browser.find_element_by_id('id_new_item')
+		inputbox.send_keys('Buy milk')
+		inputbox.send_keys(Keys.ENTER)
+
+
+		page_text = self.browser.find_element_by_tag_name('body').text
+		self.assertNotIn('Buy peacock feathers', page_text)
+		self.assertIn('Buy milk', page_text)
 		self.fail('Finish the test!')
-		# The page updates again, and now shows both items on her list
 
