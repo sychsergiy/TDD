@@ -101,7 +101,6 @@ class ListViewTest(TestCase):
 
 
 class NewListTest(TestCase):
-
 	def test_saving_a_POST_requset(self):
 		self.client.post(
 			'/lists/new',
