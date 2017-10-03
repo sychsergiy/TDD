@@ -22,6 +22,17 @@ class NewVisitorTest(LiveServerTestCase):
 
 		self.assertIn(row_text, [row.text for row in rows])
 
+	def test_layout_and_styling(self):
+		self.browser.get(self.live_server_url)
+		self.browser.set_window_size(1024, 768)
+
+		inputbox = self.browser.find_element_by_id('id_new_item')
+		self.assertAlmostEqual(
+			inputbox.location['x'] + inputbox.size['width']/2,
+			512,
+			delta=5
+		)
+
 	def test_can_start_a_list_and_retrieve_it_later(self):
 		# Edith has heard about a cool new online to-do app. She goes
 		# to check out its homepage
