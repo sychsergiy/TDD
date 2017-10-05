@@ -16,6 +16,3 @@ class ItemForm(forms.ModelForm):
                 'class': 'form-control input-lg',
             }),
         }
-        error_messages = {
-            'text': {'required': EMPTY_LIST_ERROR}
-        }
