@@ -16,15 +16,18 @@
                     navigator.id.request();
                 };
             }
+
             var logoutLink = document.getElementById('logout');
             if (logoutLink) {
                 logoutLink.onclick = function () {
                     navigator.id.logout();
                 };
             }
+
             var currentUser = '{{ user.email }}' || null;
             var csrf_token = '{{ csrf_token }}';
             console.log(currentUser);
+
             navigator.id.watch({
                 loggedInUser: currentUser,
                 onlogin: function (assertion) {
