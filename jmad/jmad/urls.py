@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from solos import views as solos_views
 urlpatterns = [
+    url(r'^$', solos_views.index, name='index'),
     url(r'^admin/', admin.site.urls),
 ]
