@@ -2,11 +2,29 @@ from django.test import LiveServerTestCase
 
 from selenium import webdriver
 
+from solos.models import Solo
+
 
 class StudentTestCase(LiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
         self.browser.implicitly_wait(2)
+
+        self.solo1 = Solo.objects.create(
+            instrument='saxophone',
+            artist='John Coltrane',
+            track='My Favorite Things'
+        )
+        self.solo2 = Solo.objects.create(
+            instrument='saxophone',
+            artist='Cannonball Adderley',
+            track='All Blues'
+        )
+        self.solo3 = Solo.objects.create(
+            instrument='saxophone',
+            artist='Cannonball Adderley',
+            track='Waltz for Debby'
+        )
 
     def tearDown(self):
         self.browser.quit()
@@ -41,13 +59,14 @@ class StudentTestCase(LiveServerTestCase):
 
         # He types in the name of his instrument and submits it.
         instrument_input.send_keys('saxophone')
+        artist_input.send_keys('Cannonball Adderley')
         self.browser.find_element_by_css_selector('form button').click()
 
         # He sees too many search results...
         search_results = self.browser.find_elements_by_css_selector(
             '.jmad-search-result'
         )
-        self.assertGreater(len(search_results), 2)
+        self.assertEqual(len(search_results), 2)
         self.fail('Incomplete Test')
 
         # ...so he adds an artist to his search query and
