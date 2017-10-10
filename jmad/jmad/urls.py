@@ -21,5 +21,5 @@ from solos import views as solos_views
 urlpatterns = [
     url(r'^$', solos_views.index, name='index'),
     url(r'^admin/', admin.site.urls),
-    url(r'^solos/(?P<pk>\d+)/$', solos_views.SoloDetailView.as_view()),
+    url(r'^solos/(?P<pk>\d+)/$', solos_views.SoloDetailView.as_view(), name='solo_detail'),
 ]

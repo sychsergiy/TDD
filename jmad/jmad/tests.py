@@ -75,7 +75,7 @@ class StudentTestCase(LiveServerTestCase):
         # He clicks on a search result.
         self.assertEqual(len(search_results), 2)
         second_search_result = self.find_search_results()
-        second_search_result.click()
+        second_search_result[0].click()
 
         # The solo page has the title, artist and album for
         # this particular solo.
