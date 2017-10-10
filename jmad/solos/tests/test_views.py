@@ -2,12 +2,29 @@ from django.test import TestCase, RequestFactory
 from django.db.models.query import QuerySet
 
 from solos.views import index, SoloDetailView
+from solos.models import Solo
 
 
-class IndexViewTestCase(TestCase):
+class SoloBaseTestCase(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
 
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.drum_solo = Solo.objects.create(
+            instrument='drums',
+            artist='Rich',
+            track='Bugle Call Rag'
+        )
+        cls.sax_solo = Solo.objects.create(
+            instrument='saxophone',
+            artist='Coltrane',
+            track='Mr. PC'
+        )
+
+
+class IndexViewTestCase(SoloBaseTestCase):
     def test_basic(self):
         """
         Test that the solo view returns a 200 response, uses
