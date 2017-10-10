@@ -19,4 +19,4 @@ class SoloModelTestCase(TestCase):
         Test the basic functionality of Solo
         """
         self.assertEqual(self.solo.artist, 'Oscar Peterson')
-        self.assertEqual(self.solo.end_dime, '4:06')
+        self.assertEqual(self.solo.end_time, '4:06')
