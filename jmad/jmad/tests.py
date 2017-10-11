@@ -3,33 +3,42 @@ from django.test import LiveServerTestCase
 from selenium import webdriver
 
 from solos.models import Solo
+from albums.models import Album, Track
 
 
 class StudentTestCase(LiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
         self.browser.implicitly_wait(2)
-
+        self.album1 = Album.objects.create(
+            name='My Favorite Things', slug='my-favorite-things')
+        self.track1 = Track.objects.create(
+            name='My Favorite Things', slug='my-favorite-things',
+            album=self.album1)
         self.solo1 = Solo.objects.create(
-            instrument='saxophone',
-            artist='John Coltrane',
-            track='My Favorite Things',
-            album='My Favorite Things'
-        )
+            instrument='saxophone', artist='John Coltrane',
+            track=self.track1, slug='john-coltrane')
+        self.album2 = Album.objects.create(
+            name='Kind of Blue', slug='kind-of-blue')
+        self.track2 = Track.objects.create(
+            name='All Blues', slug='all-blues',
+            album=self.album2, track_number=4)
         self.solo2 = Solo.objects.create(
-            instrument='saxophone',
-            artist='Cannonball Adderley',
-            track='All Blues',
-            album='Kind of Blue',
-            start_time='2:06',
-            end_time='4:01'
-        )
+            instrument='saxophone', artist='Cannonball Adderley',
+            track=self.track2, start_time='4:05', end_time='6:04',
+            slug='cannonball-adderley')
+        self.album3 = Album.objects.create(
+            name='Know What I Mean?', slug='know-what-i-mean')
+        self.track3 = Track.objects.create(
+            name='Waltz for Debby', slug='waltz-for-debby',
+            album=self.album3)
         self.solo3 = Solo.objects.create(
-            instrument='saxophone',
-            artist='Cannonball Adderley',
-            track='Waltz for Debby',
-            album='Know What I Mean?'
-        )
+            instrument='saxophone', artist='Cannonball Adderley',
+            track=self.track3, slug='cannonball-adderley')
+        self.track4 = Track.objects.create(name='Freddie Freeloader',
+                                           album=self.album2)
+        self.track5 = Track.objects.create(name='Blue in Green',
+                                           album=self.album2)
 
     def tearDown(self):
         self.browser.quit()
@@ -82,9 +91,9 @@ class StudentTestCase(LiveServerTestCase):
         # this particular solo.
         self.assertEqual(
             self.browser.current_url,
-            self.live_server_url + '/recordings/kind-of-blue/all-blues/cannonball-adderley'
+            self.live_server_url + '/recordings/kind-of-blue/all-blues/cannonball-adderley/'
         )
-        # he ses the artist
+        # he sees the artist
         self.assertEqual(
             self.browser.find_element_by_css_selector(
                 '#jmad-artist').text,
@@ -101,24 +110,18 @@ class StudentTestCase(LiveServerTestCase):
         self.assertEqual(
             self.browser.find_element_by_css_selector(
                 '#jmad-track').text,
-            'All Blues'
-        )
-
-        self.assertEqual(
-            self.browser.find_element_by_css_selector(
-                '#jmad-album').text,
-            'Kind of Blue'
+            'All Blues [1 solo]',
         )
         # He also sees the start time and end time of the solo.
         self.assertEqual(
             self.browser.find_element_by_css_selector(
                 '#jmad-start-time').text,
-            '2:06'
+            '4:05'
         )
         self.assertEqual(
             self.browser.find_element_by_css_selector(
                 '#jmad-end-time').text,
-            '4:01'
+            '6:04'
         )
 
     def find_search_results(self):

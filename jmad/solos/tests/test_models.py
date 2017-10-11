@@ -20,10 +20,10 @@ class SoloModelTestCase(TestCase):
         )
 
         self.solo = Solo.objects.create(
-            track='Falling in Love with Love',
+            track=self.track,
             artist='Oscar Peterson',
+            slug='oscar-peterson',
             instrument='piano',
-            album='At the Stratford Shakespearean Festival',
             start_time='1:24',
             end_time='4:06'
         )

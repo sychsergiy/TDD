@@ -21,5 +21,6 @@ from solos import views as solos_views
 urlpatterns = [
     url(r'^$', solos_views.index, name='index'),
     url(r'^admin/', admin.site.urls),
-    url(r'^recordings/(?P<album>[\w-]+)/(?P<track>[\w-]+)/(?P<artist>[\w-]+)/$', solos_views.SoloDetailView.as_view()),
+    url(r'^recordings/(?P<album>[\w-]+)/(?P<track>[\w-]+)/(?P<artist>[\w-]+)/$', solos_views.solo_detail,
+        name='solo_detail'),
 ]
