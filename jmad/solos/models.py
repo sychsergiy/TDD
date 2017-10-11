@@ -25,6 +25,6 @@ class Solo(models.Model):
     def get_duration(self):
         duration_string = ''
         if self.start_time and self.end_time:
-            duration_string = '{}-{}'.format(self.start_time,
-                                             self.end_time)
+            duration_string = '{}-{}'.format(self.start_time, self.end_time)
         return duration_string
+
