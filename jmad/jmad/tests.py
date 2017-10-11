@@ -30,6 +30,7 @@ class StudentTestCase(LiveServerTestCase):
             track='Waltz for Debby',
             album='Know What I Mean?'
         )
+
     def tearDown(self):
         self.browser.quit()
 
@@ -79,13 +80,22 @@ class StudentTestCase(LiveServerTestCase):
 
         # The solo page has the title, artist and album for
         # this particular solo.
-        self.assertEqual(self.browser.current_url,
-                         '{}/solos/2/'.format(self.live_server_url)
-                         )
+        self.assertEqual(
+            self.browser.current_url,
+            self.live_server_url + '/recordings/kind-of-blue/all-blues/cannonball-adderley'
+        )
+        # he ses the artist
         self.assertEqual(
             self.browser.find_element_by_css_selector(
                 '#jmad-artist').text,
             'Cannonball Adderley'
+        )
+
+        # and the album title(with track count) for this solo.
+        self.assertEqual(
+            self.browser.find_element_by_css_selector(
+                '#jmad-album').text,
+            'Kind of Blue [3 tracks]'
         )
 
         self.assertEqual(
